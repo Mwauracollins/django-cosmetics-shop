@@ -26,7 +26,7 @@ class Product(models.Model):
     description = models.TextField()
     price = models.DecimalField(max_digits=5, decimal_places=2)
     stock_quantity = models.PositiveIntegerField()
-    product_image = models.ImageField(upload_to='product_image', height_field=None, width_field=None)
+    product_image = models.ImageField(upload_to='product_image', height_field=None, width_field=None, null=True)
     slug = models.SlugField(unique=True, blank=True)
 
     def __str__(self):
