@@ -19,12 +19,20 @@ class OrderItem(models.Model):
         
         
 class Order(models.Model):
-    items = models.ManyToManyField(OrderItem)
+    order_items = models.ManyToManyField(OrderItem)
     owner = models.ForeignKey(Profile, on_delete=models.CASCADE)
     ref_code = models.CharField(max_length=100)
+    is_ordered = models.BooleanField(default=False)
+    date_ordered = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        pass
+        return f"{self.owner} {self.ref_code}"
+
+    def get_order_items(self):
+        return self.items.all()
+
+    def get_order_total(self):
+        return sum([item.product.price for item in self.items.all()])
 
     class Meta:
         db_table = 'Order'
