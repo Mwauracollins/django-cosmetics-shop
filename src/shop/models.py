@@ -26,7 +26,7 @@ class Product(models.Model):
     description = models.TextField()
     price = models.DecimalField(max_digits=5, decimal_places=2)
     stock_quantity = models.PositiveIntegerField()
-    product_image = models.ImageField(upload_to='product_image', height_field=None, width_field=None, null=True)
+    image = models.ImageField(upload_to='products', null=True)
     slug = models.SlugField(unique=True, blank=True)
 
     def __str__(self):
@@ -38,7 +38,7 @@ class Product(models.Model):
         super(Product, self).save(*args, **kwargs)  # Call the real save() method
 
     def get_absolute_url(self):
-        return reverse("product_detail", kwargs={"pk": self.pk})
+        return reverse("shop:product_detail", kwargs={"slug": self.slug})
 
     class Meta:
         db_table = 'Product'

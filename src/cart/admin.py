@@ -2,7 +2,7 @@ from django.contrib import admin
 from cart.models import Cart, CartItem
 
 class CartAdmin(admin.ModelAdmin):
-    list_display = ('owner', 'created_atfi')
+    list_display = ('owner', 'created_at')
 
 admin.site.register(Cart, CartAdmin)
 

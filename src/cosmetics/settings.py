@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-
+import os.path
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -20,10 +20,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-@3x0w^h)m53e2j=2pkw*85%3x4b(qr1^p2w-plb0a*8m+cfii%'
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get("DEBUG")
 
 ALLOWED_HOSTS = []
 
@@ -42,6 +42,10 @@ INSTALLED_APPS = [
     'orders.apps.OrdersConfig',
     'accounts.apps.AccountsConfig',
     'cart.apps.CartConfig',
+    'payment.apps.PaymentConfig',
+    
+    # Packages config
+    'django_daraja',
 ]
 
 MIDDLEWARE = [
@@ -121,6 +125,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -128,3 +137,26 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'accounts.Profile'
+
+# Stripe Account Settings
+if DEBUG:
+    STRIPE_TEST_PUBLISHABLE_KEY = os.environ.get("STRIPE_TEST_PUBLISHABLE_KEY")
+    STRIPE_TEST_SECRET_KEY = os.environ.get("STRIPE_TEST_SECRET_KEY")
+else:
+    STRIPE_LIVE_PUBLISHABLE_KEY = os.environ.get("STRIPE_LIVE_PUBLISHABLE_KEY")
+    STRIPE_LIVE_SECRET_KEY = os.environ.get("STRIPE_LIVE_SECRET_KEY")
+
+# Mpesa Daraja settings
+MPESA_ENVIRONMENT = 'sandbox'
+
+MPESA_CONSUMER_KEY = os.environ.get("MPESA_CONSUMER_KEY")
+MPESA_CONSUMER_SECRET = os.environ.get("MPESA_CONSUMER_SECRET")
+
+MPESA_SHORTCODE = os.environ.get("MPESA_SHORTCODE")
+MPESA_EXPRESS_SHORTCODE = os.environ.get("MPESA_EXPRESS_SHORTCODE")
+
+MPESA_SHORTCODE_TYPE = os.environ.get("MPESA_SHORTCODE_TYPE")
+MPESA_PASSKEY = os.environ.get("MPESA_PASSKEY")
+
+MPESA_INITIATOR_USERNAME = os.environ.get("MPESA_INITIATOR_USERNAME")
+MPESA_INITIATOR_SECURITY_CREDENTIAL = os.environ.get("MPESA_INITIATOR_SECURITY_CREDENTIAL")

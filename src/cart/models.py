@@ -13,7 +13,7 @@ class Cart(models.Model):
     def get_cart_items(self):
         return self.items.all()
     def get_cart_total(self):
-        total_cost = sum(item.get_cost() for item in self.get_cart_items())
+        total_cost = sum(item.get_cost() or 0 for item in self.get_cart_items())
         return total_cost
     
     class Meta:

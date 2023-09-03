@@ -6,6 +6,17 @@
     <title>Document</title>
 </head>
 <body>
-    
+    {% for cart_item in cart_items %}
+    <tbody>
+      <tr>
+        <th scope="row" style="display: block;">{{ forloop.counter }}</th>
+        <td><a class="text-decoration-none" href="">{{ cart_item.product.name }}</a></td>
+        <td>${{ cart_item.product.price }}</td>
+        <td>{{ cart_item.cart_item_quantity }}</td>
+        <td>${{ cart_item.get_cost }}</td>
+        <td><a class="text-danger text-decoration-none" href="{% url 'cart:delete_from_cart' cart.id %}">remove</a></td>
+      </tr>
+    </tbody>
+    {% endfor %}
 </body>
 </html>
