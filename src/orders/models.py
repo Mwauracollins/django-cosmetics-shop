@@ -4,7 +4,7 @@ from accounts.models import Profile
 
 
 class Order(models.Model):
-    owner = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    owner = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='orders')
     ref_code = models.CharField(max_length=100)
     is_ordered = models.BooleanField(default=False)
     date_ordered = models.DateTimeField(auto_now=True)
@@ -26,8 +26,9 @@ class Order(models.Model):
 
 
 class OrderItem(models.Model):
-    order_item = models.ForeignKey(Order, on_delete=models.CASCADE, null=True, related_name='items')
-    product = models.OneToOneField(Product, on_delete=models.SET_NULL, null=True)
+    order = models.ForeignKey(Order, on_delete=models.CASCADE, null=True, related_name='items')
+    product = models.OneToOneField(Product, on_delete=models.SET_NULL, null=True, related_name='order_items')
+    price = models.DecimalField(max_digits=10, decimal_places=2, null=True)
     order_item_quantity = models.PositiveIntegerField(default=1, null=True )
     is_ordered = models.BooleanField(default=False)
     date_added = models.DateTimeField(auto_now=True)

@@ -1,0 +1,96 @@
+{% load static %}
+<!--== Start Footer Area Wrapper ==-->
+  <footer class="footer-area">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <!--== Start Footer Widget Area ==-->
+          <div class="footer-widget-area pb-30">
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="widget-item">
+                  <div class="about-widget">
+                    <div class="inner-content">
+                      <div class="footer-logo">
+                        <a href='{% url "shop:homepage" %}'>
+                          <img class="logo-main" src="{% static 'shop/img/logo-light.png' %}" alt="Logo" />
+                        </a>
+                      </div>
+                      <p>Location: Kwa Ndege, Embakasi; Nairobi</p>
+                    </div>
+                    <div class="widget-desc">
+                      <p>We are a team of designers and developers that create high quality Magento, Prestashop, Opencart.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="widget-item">
+                  <div class="widget-menu-wrap">
+                    <ul class="nav-menu">
+                      <li><a href="#/">Delivery</a></li>
+                      <li><a href="#/">Legal Notice</a></li>
+                      <li><a href='{% url "shop:about" %}'>About us</a></li>
+                      <li><a href="#/">Secure payment</a></li>
+                      <li><a href='{% url "shop:contact" %}'>Contact us</a></li>
+                      <li><a href="#/">Sitemap</a></li>
+                      <li><a href='{% url "accounts:login_page" %}'>Login</a></li>
+                      <li><a href='{% url "accounts:profile_details" %}'>My account</a></li>
+                      <li><a href='{% url "shop:product_list" %}'>Stores</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--== End Footer Widget Area ==-->
+        </div>
+      </div>
+    </div>
+    <!--== Start Footer Bottom Area ==-->
+    <div class="footer-bottom">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6">
+            <p class="copyright">Copyright © 2023 All Rights Reserved | Made with <i class="fas fa-heart"></i> by <a target="_blank" href="">Mwaura</a></p>
+          </div>
+          <div class="col-lg-6">
+            <div class="payment">
+              <img src="{% static 'shop/img/payment-methods.png' %}" alt="Payment">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--== End Footer Bottom Area ==-->
+  </footer>
+  <!--== End Footer Area Wrapper ==-->
+
+    <!--== Scroll Top Button ==-->
+  <div id="scroll-to-top" class="scroll-to-top"><span class="fa-solid fa-arrow-up"></span></div>
+
+  <!--== Start Side Menu ==-->
+  <aside class="off-canvas-wrapper">
+    <div class="off-canvas-inner">
+      <div class="off-canvas-overlay"></div>
+      <!-- Start Off Canvas Content Wrapper -->
+      <div class="off-canvas-content">
+        <!-- Off Canvas Header -->
+        <div class="off-canvas-header">
+          <div class="close-action">
+            <button class="btn-menu-close">menu<i class="fa-solid fa-arrow-left"></i></button>
+          </div>
+        </div>
+
+        <div class="off-canvas-item">
+          <!-- Start Mobile Menu Wrapper -->
+          <div class="res-mobile-menu menu-active-one">
+            <!-- Note Content Auto Generate By Jquery From Main Menu -->
+          </div>
+          <!-- End Mobile Menu Wrapper -->
+        </div>
+      </div>
+      <!-- End Off Canvas Content Wrapper -->
+    </div>
+  </aside>
+  <!--== End Side Menu ==-->

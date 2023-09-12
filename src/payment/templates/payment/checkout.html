@@ -1,0 +1,248 @@
+{% extends "shop/base.html" %}
+{% load static %}
+{% block title %}
+  Checkout
+{% endblock title %}
+{% block content %}
+  {% include "shop/header.html" %}
+<main class="main-content">
+      <!--== Start Checkout form Area Wrapper ==-->
+    <section class="product-area">
+      <div class="container" data-padding-top="62">
+        <div class="shopping-cart-wrap">
+          <div class="row">
+            <div class="col-lg-8">
+              <div class="shopping-checkout-content">
+                <div class="checkout-accordion" id="accordionExample">
+                  <div class="checkout-accordion-item">
+                    <h2 class="heading" id="headingOne">
+                      <button class="heading-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        <span class="step-number">1</span>
+                        Personal Information
+                        <span class="step-edit"><i class="fa fa-pencil"></i> edit</span>
+                      </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                      <div class="checkout-accordion-body">
+                        <div class="personal-information">
+                          <ul>
+                            <li>Connected as <a href="#/">Argima</a></li>
+                            <li>Not you? <a href="#/">Log out</a></li>
+                            <li><small>If you sign out now, your cart will be emptied.</small></li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="checkout-accordion-item">
+                    <h2 class="heading" id="headingTwo">
+                      <button class="heading-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        <span class="step-number">2</span>
+                        Addresses
+                        <span class="step-edit"><i class="fa fa-pencil"></i> edit</span>
+                      </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                      <div class="checkout-accordion-body" data-margin-top="14">
+                        <div class="personal-addresses">
+                          <p class="p-text">The selected address will be used both as your personal address (for invoice) and as your delivery address.</p>
+                          <div class="delivery-address-form">
+                            <form action="#">
+                              <div class="form-group row">
+                                <label class="col-md-3" for="f_name">First name</label>
+                                <div class="col-md-6">
+                                  <input id="f_name" class="form-control" type="text">
+                                </div>
+                              </div>
+                              <div class="form-group row">
+                                <label class="col-md-3" for="l_name">Last name</label>
+                                <div class="col-md-6">
+                                  <input id="l_name" class="form-control" type="text">
+                                </div>
+                              </div>
+                              <div class="form-group row">
+                                <label class="col-md-3" for="frm_company">Company</label>
+                                <div class="col-md-6">
+                                  <input id="frm_company" class="form-control" type="text">
+                                </div>
+                                <div class="col-md-3">
+                                  <span class="optional-label">Optional</span>
+                                </div>
+                              </div>
+                              <div class="form-group row">
+                                <label class="col-md-3" for="vat_number">VAT number</label>
+                                <div class="col-md-6">
+                                  <input id="vat_number" class="form-control" type="text">
+                                </div>
+                                <div class="col-md-3">
+                                  <span class="optional-label">Optional</span>
+                                </div>
+                              </div>
+                              <div class="form-group row">
+                                <label class="col-md-3" for="frm_address">Address</label>
+                                <div class="col-md-6">
+                                  <input id="frm_address" class="form-control" type="text">
+                                </div>
+                              </div>
+                              <div class="form-group row">
+                                <label class="col-md-3" for="add_complement">Address Complement</label>
+                                <div class="col-md-6">
+                                  <input id="add_complement" class="form-control" type="text">
+                                </div>
+                                <div class="col-md-3">
+                                  <span class="optional-label">Optional</span>
+                                </div>
+                              </div>
+                              <div class="form-group row">
+                                <label class="col-md-3" for="zip_code">Zip/Postal Code</label>
+                                <div class="col-md-6">
+                                  <input id="zip_code" class="form-control" type="text">
+                                </div>
+                              </div>
+                              <div class="form-group row">
+                                <label class="col-md-3" for="frm_city">City</label>
+                                <div class="col-md-6">
+                                  <input id="frm_city" class="form-control" type="text">
+                                </div>
+                              </div>
+                              <div class="form-group row">
+                                <label class="col-md-3" for="frm_state">State</label>
+                                <div class="col-md-6">
+                                  <select id="frm_state" class="form-select form-control" aria-label="-- please choose --">
+                                    <option disabled selected>-- please choose --</option>
+                                    <option value="1">Agrigento</option>
+                                    <option value="2">Alessandria</option>
+                                    <option value="3">Ancona</option>
+                                    <option value="4">Aosta</option>
+                                    <option value="5">Arezzo</option>
+                                    <option value="6">Ascoli Piceno</option>
+                                    <option value="7">Asti</option>
+                                    <option value="8">Avellino</option>
+                                    <option value="9">Bari</option>
+                                    <option value="10">Barletta-Andria-Trani</option>
+                                    <option value="11">Belluno</option>
+                                    <option value="12">Benevento</option>
+                                    <option value="13">Bergamo</option>
+                                    <option value="14">Biella</option>
+                                    <option value="15">Bologna</option>
+                                    <option value="16">Bolzano</option>
+                                    <option value="17">Brescia</option>
+                                    <option value="18">Brindisi</option>
+                                    <option value="19">Cagliari</option>
+                                    <option value="20">Caltanissetta</option>
+                                    <option value="21">Campobasso</option>
+                                    <option value="22">Carbonia-Iglesias</option>
+                                    <option value="23">Caserta</option>
+                                    <option value="24">Catania</option>
+                                    <option value="25">Catanzaro</option>
+                                    <option value="26">Chieti</option>
+                                    <option value="27">Como</option>
+                                    <option value="28">Cosenza</option>
+                                    <option value="29">Cremona</option>
+                                    <option value="30">Crotone</option>
+                                    <option value="31">Cuneo</option>
+                                    <option value="32">Enna</option>
+                                    <option value="33">Fermo</option>
+                                    <option value="34">Ferrara</option>
+                                    <option value="35">Firenze</option>
+                                  </select>
+                                </div>
+                              </div>
+                              <div class="form-group row">
+                                <label class="col-md-3" for="frm_country">Country</label>
+                                <div class="col-md-6">
+                                  <select id="frm_country" class="form-select form-control" aria-label="-- please choose --">
+                                    <option disabled selected>-- please choose --</option>
+                                    <option value="1">Italy</option>
+                                  </select>
+                                </div>
+                              </div>
+                              <div class="form-group row">
+                                <label class="col-md-3" for="frm-phone">Phone</label>
+                                <div class="col-md-6">
+                                  <input id="frm-phone" class="form-control" type="tel">
+                                </div>
+                                <div class="col-md-3">
+                                  <span class="optional-label">Optional</span>
+                                </div>
+                              </div>
+                              <div class="form-group row mb-0">
+                                <div class="col-md-9">
+                                  <input name="use_same_address" id="use_same_address" type="checkbox">
+                                  <label class="pt-0" for="use_same_address">Use this address for invoice too</label>
+                                </div>
+                              </div>
+                              <div class="form-group row">
+                                <div class="col-md-12 text-end">
+                                  <button type="submit" class="btn-submit">Continue</button>
+                                </div>
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="shopping-checkout-disabled">
+                  <h4 class="title"><span>3</span> Shipping Method</h4>
+                </div>
+                <div class="shopping-checkout-disabled">
+                  <h4 class="title"><span>4</span> Payment</h4>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="shopping-cart-summary mt-md-70">
+                <div class="cart-detailed-totals">
+                  <div class="card-block">
+                    <div class="card-block-item">
+                      <span class="label">{{cart.get_total_distinct_items}} products</span>
+                    </div>
+                    <div class="card-block-item">
+                      <span class="label">show details</span>
+                    </div>
+                    <div class="card-block-item">
+                      <span class="label">Subtotal</span>
+                      <span class="value">€58.32</span>
+                    </div>
+                    <div class="card-block-item">
+                      <span class="label">Shipping</span>
+                      <span class="value">Free</span>
+                    </div>
+                  </div>
+                  <div class="separator"></div>
+                  <div class="card-block">
+                    <div class="card-block-item">
+                      <span class="label">Total (Tax Incl.)</span>
+                      <span class="value">€58.32</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="block-reassurance">
+                <ul>
+                  <li>
+                    <img src="assets/img/shop/cart/verified-user.png" alt="Has-Image">
+                    <span>Security Policy (Edit With Customer Reassurance Module)</span>
+                  </li>
+                  <li>
+                    <img src="assets/img/shop/cart/local-shipping.png" alt="Has-Image">
+                    <span>Delivery Policy (Edit With Customer Reassurance Module)</span>
+                  </li>
+                  <li>
+                    <img src="assets/img/shop/cart/swap-horiz.png" alt="Has-Image">
+                    <span>Return Policy (Edit With Customer Reassurance Module)</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+    <!--== End Checkout form Area Wrapper ==-->
+</main>
+{% include 'shop/footer.html' %}
+{% endblock content %}

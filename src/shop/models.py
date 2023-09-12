@@ -1,6 +1,7 @@
 from django.db import models
 from django.urls import reverse
 from django.utils.text import slugify
+from PIL import Image
 
 
 class Category(models.Model):
@@ -37,8 +38,18 @@ class Product(models.Model):
 
         super(Product, self).save(*args, **kwargs)  # Call the real save() method
 
+        img = Image.open(self.image.path)
+
+        desired_width = 200
+        desired_height = 300
+
+        img.thumbnail((desired_width, desired_height))
+
+        img.save(self.image.path)
+
     def get_absolute_url(self):
         return reverse("shop:product_detail", kwargs={"slug": self.slug})
+
 
     class Meta:
         db_table = 'Product'

@@ -1,42 +1,67 @@
 
+{% extends "shop/base.html" %}
+{% load static %}
+{% block title %}
+  Login Page
+{% endblock title %}
 
-	<div class="container h-100">
-		<div class="d-flex justify-content-center h-100">
-			<div class="user_card">
-				<div class="d-flex justify-content-center">
+{% block content %}
 
-
-					<h3 id="form-title">LOGIN</h3>
-				</div>
-				<div class="d-flex justify-content-center form_container">
-					<form method="POST" action="{% url 'accounts:login_page' %}">
+{% include "shop/header.html" %}
+<main class="main-content">
+	    <!--== Start Account Area Wrapper ==-->
+		<section>
+			<div class="container" data-padding-top="62"> 
+			  <h4 class="fz-24 mb-25">Log in to your account</h4>
+			  <div class="row">
+				<div class="col-12">
+				  <div class="login-form-content">
+					<div class="login-form">
+					  <form action="#" method="post">
 						{% csrf_token %}
-						<div class="input-group mb-3">
-							<div class="input-group-append">
-								<span class="input-group-text"><i class="fas fa-user"></i></span>
-							</div>
-							<input type="text" name="email" placeholder="Email.." class="form-control">
+						<div class="form-group row">
+						  <label class="col-md-3" for="frm_email">Email</label>
+						  <div class="col-md-6">
+							<input name="email" id="email" class="form-control" type="email">
+						  </div>
 						</div>
-						<div class="input-group mb-2">
-							<div class="input-group-append">
-								<span class="input-group-text"><i class="fas fa-key"></i></span>
+						<div class="form-group row">
+						  <label class="col-md-3" for="frm_pass">Password</label>
+						  <div class="col-md-6">
+							<div class="pass-content">
+							  <input name="password" type="password" class="form-control" id="frm_pass">
+							  <span class="show-pass" onclick="myFunction()">show</span>
 							</div>
-								<input type="password" name="password" placeholder="Password..." class="form-control" >
+						  </div>
 						</div>
-
-							<div class="d-flex justify-content-center mt-3 login_container">
-				 				<input class="btn login_btn" type="submit" value="Login">
-				   			</div>
-					</form>
-
-				</div>
-		
-				<div class="mt-4">
-					<div class="d-flex justify-content-center links">
-						Don't have an account? <a href="{% url 'accounts:signup_page' %}" class="ml-2">Sign Up</a>
+						<div class="form-group row mb-15">
+						  <div class="col-12 text-center">
+							<a class="btn-forgot" href="#/">Forgot your password?</a>
+							<input class="btn-save" type="submit" value="Login">
+						  </div>
+						</div>
+					  </form>
 					</div>
-			
+					<a class='btn-create-account' href='{% url "accounts:signup_page" %}'>No account? Create one here</a>
+				  </div>
 				</div>
+			  </div>
 			</div>
-		</div>
-	</div>
+		  </section>
+		  <!--== End Account Area Wrapper ==-->
+	  
+
+</main>
+<script>
+	function myFunction() {
+	  var x = document.getElementById("frm_pass");
+	  if (x.type === "password") {
+		x.type = "text";
+	  } else {
+		x.type = "password";
+	  }
+	}
+	</script>
+  
+{% endblock content %}
+

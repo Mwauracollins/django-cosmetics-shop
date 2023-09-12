@@ -1,3 +1,5 @@
+from django.contrib.sessions.models import Session
+
 from django.db import models
 from shop.models import Product
 from accounts.models import Profile
@@ -7,6 +9,7 @@ from django.utils import timezone
 class Cart(models.Model):
     owner = models.OneToOneField(Profile, on_delete=models.CASCADE)
     created_at = models.DateTimeField(default=timezone.now)
+    session_key = models.ForeignKey(Session, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
         return self.owner

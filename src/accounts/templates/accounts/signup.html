@@ -1,78 +1,95 @@
+{% extends "shop/base.html" %}
+{% load static %}
+{% block title %}
+SignUp
+  
+{% endblock title %}
+{% block content %}
 
-	<div class="container h-100">
-		<div class="d-flex justify-content-center h-100">
-			<div class="user_card">
-				<div class="d-flex justify-content-center">
-					<h3 id="form-title">REGISTER ACCOUNT</h3>
-				</div>
-				<div class="d-flex justify-content-center form_container">
-
-					<form method="POST" action="">
+{% include "shop/header.html" %}
+<main class="main-content">
+	    <!--== Start Account Area Wrapper ==-->
+		<section>
+			<div class="container" data-padding-top="62"> 
+			  <h4 class="fz-24 mb-25">Create an account</h4>
+			  <div class="row">
+				<div class="col-12">
+				  <div class="register-form-content">
+					<div class="register-form">
+					  <span class="login-account">Already have an account? <a href="{% url 'accounts:login_page' %}">Log in instead!</a></span>
+					  <form action="#" method="post">
 						{% csrf_token %}
-						<div class="input-group mb-2">
-							<div class="input-group-append">
-								<span class="input-group-text"><i class="fas fa-envelope-square"></i></span>
-							</div>
-							{{form.email}}
-
+						<div class="form-group row">
+						  <label class="col-md-3" for="first_name">First name</label>
+						  <div class="col-md-6">
+							<input name="first_name" id="first_name" class="form-control" type="text">
+						  </div>
 						</div>
-						<div class="input-group mb-2">
-							<div class="input-group-append">
-								<span class="input-group-text"><i class="fas fa-envelope-square"></i></span>
-							</div>
-							{{form.first_name}}
+						<div class="form-group row">
+						  <label class="col-md-3" for="last_name">Last name</label>
+						  <div class="col-md-6">
+							<input name="last_name" id="last_name" class="form-control" type="text">
+						  </div>
 						</div>
-						<div class="input-group mb-2">
-							<div class="input-group-append">
-								<span class="input-group-text"><i class="fas fa-envelope-square"></i></span>
-							</div>
-							{{form.last_name}}
+						<div class="form-group row">
+						  <label class="col-md-3" for="email">Email</label>
+						  <div class="col-md-6">
+							<input name="email" id="email" class="form-control" type="email">
+						  </div>
 						</div>
-
-						<div class="input-group mb-2">
-							<div class="input-group-append">
-								<span class="input-group-text"><i class="fas fa-phone"></i></span>
+						<div class="form-group row">
+							<label class="col-md-3" for="phone_number">Phone Number</label>
+							<div class="col-md-6">
+							  <input name="phone_number" id="phone_number" class="form-control" type="number">
 							</div>
-							{{form.phone_number}}
-
-						</div>
-
-						<div class="input-group mb-2">
-							<div class="input-group-append">
-								<span class="input-group-text"><i class="fas fa-key"></i></span>
+						  </div>
+						<div class="form-group row">
+						  <label class="col-md-3" for="password">Password</label>
+						  <div class="col-md-6">
+							<div class="pass-content">
+							  <input name="password" type="password" class="form-control" id="frm_pass1">
+							  <span class="show-pass" onclick="myFunction('frm_pass1')">show</span>
 							</div>
-							{{form.password1}}
+						  </div>
 						</div>
-						<div class="input-group mb-2">
-							<div class="input-group-append">
-								<span class="input-group-text"><i class="fas fa-key"></i></span>
+						<div class="form-group row">
+							<label class="col-md-3" for="password">Confirm Password</label>
+							<div class="col-md-6">
+							  <div class="pass-content">
+								<input name="confirm_password" type="password" class="form-control" id="frm_pass2">
+								<span class="show-pass" onclick="myFunction('frm_pass2')">show</span>
+							  </div>
 							</div>
-							{{form.password2}}
 						</div>
-
-
-				   		<div class="d-flex justify-content-center mt-3 login_container">
-				 			<input class="btn login_btn" type="submit" value="Register Account">
-				   		</div>
-					</form>
-				</div>
-				{{form.errors}}
-
-				<div class="mt-4">
-					<div class="d-flex justify-content-center links">
-						Already have an account? <a href="{% url 'accounts:login_page' %}" class="ml-2">Login</a>
+						<div class="row">
+							<div class="col-12 text-end">
+								<input class="btn-save" type="submit" value="SignUp">
+							</div>
+						  </div>
+					  </form>
 					</div>
+
+					
+				  </div>
 				</div>
+			  </div>
 			</div>
-		</div>
-	</div>
-	<script>var form_fields = document.getElementsByTagName('input')
-		form_fields[1].placeholder = 'Email';
-		form_fields[2].placeholder = 'Phone Number';
-		form_fields[3].placeholder = 'Enter password..';
-		form_fields[4].placeholder = 'Confirm Password';
+		  </section>
+		  <!--== End Account Area Wrapper ==-->
 
+{% include "shop/contact.html" %}
+</main>
+{% include "shop/footer.html" %}
 
-		for (var field in form_fields){
-			form_fields[field].className += ' form-control'
-		}</script>
+<script>
+	function myFunction(inputId) {
+	  var x = document.getElementById(inputId);
+	  if (x.type === "password") {
+		x.type = "text";
+	  } else {
+		x.type = "password";
+	  }
+	}
+	</script>
+  
+{% endblock content %}

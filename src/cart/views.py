@@ -1,50 +1,53 @@
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render, get_object_or_404
-from django.http import HttpResponse
 
-from accounts.models import Profile
-from cart.models import Cart, CartItem
+from cart.cart import CartObject
+from cart.models import CartItem, Cart
 from shop.models import Product
 
 
+@login_required(login_url='accounts:login_page')
+# @require_POST
 def add_to_cart(request, product_id):
-    product = get_object_or_404(Product, pk=product_id)
-    cart, created = Cart.objects.get_or_create(owner=request.user)
+    user = request.user
+    if request.method == "POST":
+        product = get_object_or_404(Product, id=product_id)
+        cart = CartObject(request)
+        quantity = int(request.POST.get('quantity', 0))
+        cart.add(product=product, quantity=quantity)
+        
+        if user.is_authenticated:
+            user_cart, created = Cart.objects.get_or_create(owner=request.user)
 
-    cart_item, item_created = CartItem.objects.get_or_create(cart=cart, product=product)
+            cart_item, created = CartItem.objects.get_or_create(cart=user_cart, product=product)
+            cart_item.cart_item_quantity = quantity
+            cart_item.save()
+            user_cart.save()
 
-    if not item_created:
-        cart_item.cart_item_quantity += 1
-        cart_item.save()
+            
+
     return redirect('cart:view_cart')
 
 
+@login_required(login_url='accounts:login_page')
 def view_cart(request):
-    cart = Cart.objects.filter(owner=request.user).first()
-    
-    if cart:
-        cart_items = cart.get_cart_items()
-        cart_total = cart.get_cart_total()
-    
-    else:
-        cart_items = []
-        cart_total = 0
-    
-    context = {
-        'cart': cart,
-        'cart_items': cart_items,
-        'cart_total': cart_total,
-    }
-    
-    return render(request, 'cart/cart.html', context)
+    cart = CartObject(request)
+    # for item in cart:
+    #     item['update_quantity_form'] = CartAddProductForm(
+    #         initial={
+    #             'quantity': item['quantity'],
+    #             'update': True
+    #         }
+    #     )
+
+    return render(request, 'cart/cart.html')
 
 
-def delete_cart_items(request, cart_item_id):
-    cart_item = get_object_or_404(CartItem, pk=cart_item_id, cart_owner=request.user)
-    
-    if cart_item.cart_item_quantity > 1:
-        cart_item.cart_item_quantity -= 1
-        cart_item.save()
-    else:
-        cart_item.delete()
-        
-    return redirect('view_cart')
+@login_required(login_url='accounts:login_page')
+def delete_cart_items(request, product_id):
+    cart = CartObject(request)
+    product = get_object_or_404(Product, id=product_id)
+    cart.remove(product)
+    messages.success(request, "Item removed from cart")
+    return redirect('cart:view_cart')

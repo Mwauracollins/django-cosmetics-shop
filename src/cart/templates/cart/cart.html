@@ -1,22 +1,119 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    {% for cart_item in cart_items %}
-    <tbody>
-      <tr>
-        <th scope="row" style="display: block;">{{ forloop.counter }}</th>
-        <td><a class="text-decoration-none" href="">{{ cart_item.product.name }}</a></td>
-        <td>${{ cart_item.product.price }}</td>
-        <td>{{ cart_item.cart_item_quantity }}</td>
-        <td>${{ cart_item.get_cost }}</td>
-        <td><a class="text-danger text-decoration-none" href="{% url 'cart:delete_from_cart' cart.id %}">remove</a></td>
-      </tr>
-    </tbody>
-    {% endfor %}
-</body>
-</html>
+
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block title %}
+Cart
+{% endblock title %}
+
+{% block content %}
+
+    {% include 'shop/header.html' %}
+<main>
+        <section class="product-area">
+      <div class="container" data-padding-top="62">
+        <div class="shopping-cart-wrap">
+        {% if cart|length > 0 %}
+          <div class="row">
+            <div class="col-lg-8">
+              <div class="shopping-cart-content">
+                <h4 class="title">Shopping Cart</h4>
+                {% for item in cart %}
+                  <p> Debug: Item in Cart</p>
+                <div class="shopping-cart-item">
+                  <div class="row">
+                    <div class="col-4 col-md-3">
+                      <div class="product-thumb">
+                        <img src="{{item.product.image.url}}" alt="{{item.product.name}}">
+                      </div>
+                    </div>
+                    <div class="col-8 col-md-4">
+                      <div class="product-content">
+                        <h5 class="title"><a href='{{item.product.get_absolute_url}}'>{{item.product.name}}</a></h5>
+                        <h6 class="product-price">{{item.product.price}}</h6>
+                      </div>
+                    </div>
+                    <div class="col-6 offset-4 offset-md-0 col-md-5">
+                      <div class="product-info">
+                        <div class="row">
+                          <div class="col-md-10 col-xs-6">
+                            <div class="row">
+                                <div class="col-md-6 col-xs-6 qty">
+                                  <div class="product-quick-qty">
+                                      <span>Quantity:  </span>{{item.quantity}}
+                                  </div>
+                                </div>
+                              
+                              <div class="col-md-6 col-xs-2 price">
+                                <h6 class="product-price">{{item.total_price}}</h6>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-2 col-xs-2 text-end">
+                            <form action="" method="post">
+                                {% csrf_token %}
+                            <div class="product-close">
+
+                                <a type="submit" href="{% url 'cart:delete_from_cart' item.product.id %}"><i class="fa-solid fa-trash"></i></a>
+
+                            </div>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {% endfor %}
+                <a class="btn-primary" href="{% url 'shop:product_list' %}">Continue shopping</a>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="shopping-cart-summary mt-md-70">
+                <div class="cart-detailed-totals">
+                  <div class="card-block">
+                    <div class="card-block-item">
+                      <span class="label">No of Items</span>
+                      <span class="value">{{cart| length}}</span>
+                    </div>
+                    <div class="card-block-item">
+                      <span class="label">Total price</span>
+                      <span class="value">{{cart.get_total_price}}</span>
+                    </div>
+                    <div class="card-block-item">
+                      <span class="label">Shipping</span>
+                      <span class="value">Free</span>
+                    </div>
+                  </div>
+                  <div class="separator"></div>
+                  <div class="card-block">
+                    <div class="card-block-item">
+                      <span class="label">Total (Tax Incl.)</span>
+                      <span class="value">{{cart.get_total_price}}</span>
+                    </div>
+                  </div>
+                  <div class="separator"></div>
+                </div>
+                <div class="checkout-shopping">
+                  <a class='btn-checkout' href="{% url 'orders:create_order' %}">Proceed to checkout</a>
+                </div>
+              </div>
+            </div>
+          </div>
+           {% else %}
+          <div class="col-md-8 mt-5 pt-5 text-center">
+            <br>
+            <h3 class="text-muted text-capitalize">cart is empty..!</h3>
+            <a href="/" class="text-primary text-decoration-none">Back</a>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </section>
+
+    {% include 'shop/contact.html' %}
+</main>
+
+{% include 'shop/footer.html' %}
+
+{% endblock content %}

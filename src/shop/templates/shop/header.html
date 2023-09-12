@@ -1,0 +1,306 @@
+{% load static %}
+<!--== Start Header Wrapper ==-->
+  <header class="header-area header-default header-style">
+    <!--== Start Header Top ==-->
+    <div class="header-top">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-6 text-md-end text-center mt-sm-15">
+            <div class="theme-setting">
+              <a class="dropdown-btn" href="#" role="button">
+                Setting
+                <i class="fas fa-angle-down"></i>
+              </a>
+              <ul class="dropdown-content">
+                <li>
+                  <a href="{% url 'accounts:profile_details' %}">My account</a>
+                </li>
+                <li>
+                  <a href="{% url 'orders:pending_orders' %}">Checkout</a>
+                </li>
+                <li>
+                  <a href="{% url 'accounts:logout_user' %}">Sign out</a>
+                </li>
+              </ul>
+            </div>
+            <div class="theme-dark">
+              <a class="dropdown-btn" href="#" role="button">
+                Dark Mode
+              </a>
+            </div>
+            <div class="theme-welcome">
+              <a class="dropdown-btn" href="#" role="button">
+                Welcome {{user.first_name}}
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--== End Header Top ==-->
+
+    <!--== Start Header Bottom ==-->
+    <div class="header-bottom sticky-header hidden-md-down">
+      <div class="container-fluid">
+        <div class="row align-items-center">
+          <div class="col col-12">
+            <div class="header-align align-default">
+              <div class="align-left">
+                <div class="header-logo-area">
+                  <a href="{% url 'shop:homepage' %}">
+                    <img class="logo-main" src="{% static 'shop/img/logo-main.PNG' %}" alt="Logo" />
+                    <img class="logo-main d-none" src="{% static 'shop/img/logo-light.png' %}" alt="Logo" />
+                  </a>
+                </div>
+                <div class="header-navigation-area hidden-md-down">
+                  <ul class="main-menu nav position-relative">
+                    <li ><a href="{% url 'shop:initial_page' %}">Home</a></li>
+
+                    <li><a href="{% url 'shop:about' %}">About Us</a></li>
+
+                    <li class="has-submenu full-width"><a href="#">Categories<i class="fas fa-angle-down"></i></a>
+                      <ul class="submenu-nav submenu-nav-mega submenu-nav-width">
+                        <li class="mega-menu-item"><a href="#/" class="mega-title">Makeup</a>
+                          <ul>
+                            <li><a href='{% url "shop:product_list" %}'>Foundation</a></li>
+                            <li><a href='{% url "shop:product_list" %}'>Lipstick</a></li>
+                            <li><a href='{% url "shop:product_list" %}'>Mascara</a></li>
+                            <li><a href='{% url "shop:product_list" %}'>Highlighter</a></li>
+                            <li><a href='{% url "shop:product_list" %}'>Concealer</a></li>
+                          </ul>
+                        </li>
+                        <li class="mega-menu-item"><a href="#/" class="mega-title">Skincare</a>
+                          <ul>
+                            <li><a href='{% url "shop:product_list" %}'>Cleansers</a></li>
+                            <li><a href='{% url "shop:product_list" %}'>Moisturizers</a></li>
+                            <li><a href='{% url "shop:product_list" %}'>Toners</a></li>
+                            <li><a href='{% url "shop:product_list" %}'>Acne Treatment</a></li>
+                          </ul>
+                        </li>
+                        <li class="mega-menu-item"><a href="#/" class="mega-title">Haircare</a>
+                          <ul>
+                            <li><a href='{% url "shop:product_list" %}'>Shampoo</a></li>
+                            <li><a href='{% url "shop:product_list" %}'>Conditioner</a></li>
+                            <li><a href='{% url "shop:product_list" %}'>Hair Styling</a></li>
+                            <li><a href='{% url "shop:product_list" %}'>Hair dyes</a></li>
+                          </ul>
+                        </li>
+                        <li class="mega-menu-item"><a href="#/" class="mega-title">Face and Body</a>
+                          <ul>
+                            <li><a href='{% url "cart:view_cart" %}'>Cart</a></li>
+                            <li><a href='{% url "payment:checkout" %}'>Checkout</a></li>
+                            <li><a href='{% url "shop:wishlist" %}'>Wishlist</a></li>
+                            <li><a href='{% url "shop:compare" %}'>Compare</a></li>
+                            <li><a href=''>My Account</a></li>
+                            <li><a href='{% url "accounts:login_page" %}'>Login</a></li>
+                            <li><a href='{% url "accounts:signup_page" %}'>Register</a></li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </li>
+                    <li class="has-submenu full-width"><a href="#">Blog<i class="fas fa-angle-down"></i> </a>
+                      <ul class="submenu-nav submenu-nav-mega submenu-nav-width-two colunm-two">
+                        <li class="mega-menu-item"><a href="#" class="mega-title">Layouts</a>
+                          <ul>
+                            <li><a href='/argima/argima/blog-grid-three-columns'>Blog Grid 03 Columns</a></li>
+                            <li><a href='/argima/argima/blog-grid-four-columns'>Blog Grid 04 Columns</a></li>
+                            <li><a href='/argima/argima/blog-left-sidebar'>Blog Left Sidebar</a></li>
+                            <li><a href='/argima/argima/blog-right-sidebar'>Blog Right Sidebar</a></li>
+                          </ul>
+                        </li>
+                        <li class="mega-menu-item"><a href="#" class="mega-title">Single Post</a>
+                          <ul>
+                            <li><a href='/argima/argima/single-blog'>Single Blog</a></li>
+                            <li><a href='/argima/argima/single-left-blog'>Single Blog Left Sidebar</a></li>
+                            <li><a href='/argima/argima/single-right-blog'>Single Blog Right Sidebar</a></li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </li>
+                    <li><a href='/argima/argima/contact'>Contact us</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="align-right">
+                <div class="contact-link float-start">
+                  <div class="phone">
+                    <span>Call us:</span>
+                    <a href="tel:+254712345678">+254712345678</a>
+                  </div>
+                </div>
+                <div class="header-action-area float-start">
+                  <div class="search-content-wrap">
+                    <button class="btn-search">
+                      <span class="icon icon-search icon-magnifier"></span>
+                    </button>
+                    <div class="btn-search-content">
+                      <form action="#" method="post">
+                        <div class="form-input-item">
+                          <input type="text"  placeholder="Enter your search key ...">
+                          <button type="submit" class="btn-src">
+                            <i class="icon-magnifier"></i>
+                          </button>
+                          <div class="search-categorie">
+                            <select class="form-select" name="poscats">
+                              <option selected>All categories</option>
+                              <option value="1">Beauty &amp; Health</option>
+                              <option value="2">- - Makeup</option>
+                              <option value="3">- - - - Eyes</option>
+                              <option value="4">- - - - Lips</option>
+                              <option value="5">- - - - Face</option>
+                              <option value="6">- - - - Makeup Tools</option>
+                              <option value="7"> - - Skin Care</option>
+                              <option value="8">- - - - Face</option>
+                              <option value="9">- - - - Eyes</option>
+                              <option value="10">- - - - Body</option>
+                              <option value="11">- - - - Skin Care Tools</option>
+                              <option value="12">- - Health Care</option>
+                              <option value="13">- - - - Massage &amp; Relaxation</option>
+                              <option value="14">- - - - Household Health Monitors</option>
+                              <option value="15">- - - - Chinese Medicine</option>
+                              <option value="16">- - - - Personal Health Care Items</option>
+                              <option value="17">- - Nail Art &amp; Tools</option>
+                              <option value="18">- - - - Gel Nail Polish</option>
+                              <option value="19">- - - - Nail Drills</option>
+                              <option value="20">- - - - Nail Dryers</option>
+                              <option value="21">- - - - Nail Glitter</option>
+                            </select>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                  <div class="shop-button-group">
+                    <div class="shop-button-item">
+                      <a class='shop-button' href='{% url "shop:compare" %}'>
+                        <i class="icon-shuffle icon"></i>
+                        <sup class="shop-count">5</sup>
+                      </a>
+                    </div>
+                    <div class="shop-button-item">
+                      <a class='shop-button' href='{% url "shop:wishlist" %}'>
+                        <i class="icon-heart icon"></i>
+                        <sup class="shop-count">2</sup>
+                      </a>
+                    </div>
+                    {% for item in cart %}
+                    <div class="shop-button-item">
+                      <a class="shop-button" href="#">
+                        <i class="icon-bag icon"></i>
+                        <sup class="shop-count">{{ cart.get_total_distinct_items}}</sup>
+                        <span class="cart-total">Ksh. {{cart.get_total_price}}</span>
+                      </a>
+                      <div class="popup-cart-content">
+                        <ul class="popup-product-list">
+                          {% for item in cart %}
+                          <li class="product-list-item">
+                            <a href="product-single.html">
+                              <img src="{{item.product.image.url}}" alt="{{item.name}}">
+                              <span class="product-title">{{item.name}}</span>
+                              <span class="product-quantity">{{item.quantity}}</span>
+                            </a>
+                            <span class="product-price">Ksh {{item.price}}</span>
+                            <a class="product-close" href="#"><i class="la la-close"></i></a>
+                          </li>
+                          {% endfor %}
+                        </ul>
+                        <div class="price-content">
+                          <div class="cart-subtotals">
+                            <div class="products">
+                              <span class="label">Subtotal</span>
+                              <span class="value">€{{cart.get_total_price}}</span>
+                            </div>
+                            <div class="products">
+                              <span class="label">Shipping</span>
+                              <span class="value">Free</span>
+                            </div>
+                          </div>
+                          <div class="cart-total">
+                            <span class="label">Total</span>
+                            <span class="value">€{{cart.get_total_price}}</span>
+                          </div>
+                        </div>
+                        <div class="checkout">
+                          <a class='btn-Checkout' href='{% url "orders:create_order" %}'>Checkout</a>
+                        </div>
+                      </div>
+                    </div>
+                    {% endfor %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--== End Header Bottom ==-->
+
+    <!--== Start Responsive Header ==-->
+    <div class="responsive-header">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-4">
+            <div class="header-item">
+              <button class="btn-menu" type="button"><i class="icon-menu"></i></button>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="header-item justify-content-center">
+              <div class="header-logo-area">
+                <a href="{% url 'shop:initial_page' %}">
+                  <img class="logo-main" src="{% static 'shop/img/logo.PNG' %}" alt="Logo" />
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="header-item justify-content-end">
+              <button class="btn-user" onclick="window.location.href='{% url 'accounts:profile_details' %}'"><i class="icon-user"></i></button>
+              <button class="btn-cart" onclick="window.location.href='{% url 'cart:view_cart' %}'"><i class="icon-bag"></i> <span class="item-count">{{cart.get_total_distinct_items }}</span></button>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="responsive-search-content">
+              <form action="#">
+                <div class="form-input-item">
+                  <input type="text"  placeholder="Enter your search key ...">
+                  <button type="submit" class="btn-src">
+                    <i class="icon-magnifier"></i>
+                  </button>
+                  <div class="search-categorie">
+                    <select class="form-select" name="poscats">
+                      <option selected>All categories</option>
+                      <option value="1">Beauty &amp; Health</option>
+                      <option value="2">- - Makeup</option>
+                      <option value="3">- - - - Eyes</option>
+                      <option value="4">- - - - Lips</option>
+                      <option value="5">- - - - Face</option>
+                      <option value="6">- - - - Makeup Tools</option>
+                      <option value="7"> - - Skin Care</option>
+                      <option value="8">- - - - Face</option>
+                      <option value="9">- - - - Eyes</option>
+                      <option value="10">- - - - Body</option>
+                      <option value="11">- - - - Skin Care Tools</option>
+                      <option value="12">- - Health Care</option>
+                      <option value="13">- - - - Massage &amp; Relaxation</option>
+                      <option value="14">- - - - Household Health Monitors</option>
+                      <option value="15">- - - - Chinese Medicine</option>
+                      <option value="16">- - - - Personal Health Care Items</option>
+                      <option value="17">- - Nail Art &amp; Tools</option>
+                      <option value="18">- - - - Gel Nail Polish</option>
+                      <option value="19">- - - - Nail Drills</option>
+                      <option value="20">- - - - Nail Dryers</option>
+                      <option value="21">- - - - Nail Glitter</option>
+                    </select>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--== End Responsive Header ==-->
+  </header>
+  <!--== End Header Wrapper ==-->

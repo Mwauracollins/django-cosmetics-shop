@@ -1,0 +1,241 @@
+    <!--== Start Product Area Wrapper ==-->
+    <section class="product-area">
+      <div class="container pt-95 pt-lg-70">
+        <div class="row">
+          <div class="col-sm-8 m-auto">
+            <div class="section-title text-center">
+              <h2 class="title">New Arrivals</h2>
+              <div class="desc">
+                <p>Add our new arrivals to your weekly lineup</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <div class="product-slider owl-carousel owl-theme">
+              {% for product in products %}
+              <div class="item">
+
+                <!--== Start Shop Item ==-->
+                <div class="product-item">
+                  <div class="inner-content">
+                    <div class="product-thumb">
+                      <a href='{{product.get_absolute_url}}'>
+                        <img src="{{product.image.url}}" alt="{{product.name}}">
+                      </a>
+                      <div class="product-action">
+                        <div class="addto-wrap">
+                          <a class='add-wishlist' href='{% url "shop:add_to_wishlist" product.id %}' title='Add to wishlist'>
+                            <i class="icon-heart icon"></i>
+                          </a>
+                          <a class='add-compare' href='{% url "shop:compare" %}' title='Add to compare'>
+                            <i class="icon-shuffle icon"></i>
+                          </a>
+                        </div>
+                      </div>
+                      <ul class="product-flag">
+                        <li class="new">New</li>
+                        <li class="discount">-10%</li>
+                      </ul>
+                    </div>
+                    <div class="product-desc">
+                      <div class="product-info">
+                        <h4 class="title"><a href='{{product.get_absolute_url}}'>{{product.name}}</a></h4>
+                        <div class="prices">
+                          <span class="price">{{product.price}}</span>
+                        </div>
+                      </div>
+                      <div class="product-footer">
+                        <form action="" method="post">
+                          {% csrf_token %}
+                        <a class='btn-product-add' href='{{ product.get_absolute_url }}'>Add to cart</a>
+                        </form>
+                        <a class="btn-quick-view" href="javascript:;" title="Quick view">Quick view</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!--== End Shop Item ==-->
+              </div>
+               {% endfor %}
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--== End Product Area Wrapper ==-->
+
+
+    <!--== Start Product Area Wrapper ==-->
+    <section class="product-area">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-8 m-auto">
+            <div class="section-title text-center mb-30">
+              <h2 class="title">Our Products</h2>
+              <div class="desc">
+                <p>Add our products to weekly line up</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <div class="product-tabs-content-wrap">
+              <ul class="nav mb-25 product-tab-nav" id="pills-tab" role="tablist">
+                <li role="presentation">
+                  <a class="active" id="makeup-tab" data-bs-toggle="pill" href="#makeup" role="tab" aria-controls="makeup" aria-selected="true">Makeup</a>
+                </li>
+                <li role="presentation">
+                  <a id="skin-care-tab" data-bs-toggle="pill" href="#skin-care" role="tab" aria-controls="skin-care" aria-selected="false">Skin Care</a>
+                </li>
+                <li role="presentation">
+                  <a id="health-care-tab" data-bs-toggle="pill" href="#health-care" role="tab" aria-controls="health-care" aria-selected="false">Health Care</a>
+                </li>
+              </ul>
+              <div class="tab-content product-tab-content" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="makeup" role="tabpanel" aria-labelledby="makeup-tab">
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="product-slider owl-carousel owl-theme owl-loaded owl-drag">
+                        {% for product in products %}
+                        <div class="item">
+                          <!--== Start Shop Item ==-->
+                          <div class="product-item">
+                            <div class="inner-content">
+                              <div class="product-thumb">
+                                <a href='{{product.get_absolute_url}}'>
+                                  <img src="{{product.image.url}}" alt="{{product.name}}">
+                                </a>
+                                <div class="product-action">
+                                  <div class="addto-wrap">
+                                    <a class='add-wishlist' href='{% url "shop:add_to_wishlist" product.id %}' title='Add to wishlist'>
+                                      <i class="icon-heart icon"></i>
+                                    </a>
+                                    <a class='add-compare' href='/argima/argima/compare' title='Add to compare'>
+                                      <i class="icon-shuffle icon"></i>
+                                    </a>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="product-desc">
+                                <div class="product-info">
+                                  <h4 class="title"><a href='{{ product.get_absolute_url }}'>{{product.name}}</a></h4>
+                                  <div class="prices">
+                                    <span class="price text-black">Ksh. {{ product.price }}</span>
+                                  </div>
+                                </div>
+                                <div class="product-footer">
+                                  <a class='btn-product-add' href='{% url "cart:add_to_cart" product.id %}'>Add to cart</a>
+                                  <a class="btn-quick-view" href="javascript:;" title="Quick view">Quick view</a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <!--== End Shop Item ==-->
+                        </div>
+                        {% endfor %}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-pane fade" id="skin-care" role="tabpanel" aria-labelledby="skin-care-tab">
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="product-slider owl-carousel owl-theme">
+                        {% for product in products %}
+                        <div class="item">
+                          <!--== Start Shop Item ==-->
+                          <div class="product-item">
+                            <div class="inner-content">
+                              <div class="product-thumb">
+                                <a href='{{product.get_absolute_url}}'>
+                                  <img src="{{ product.image.url }}" alt="{{product.name}}">
+                                </a>
+                                <div class="product-action">
+                                  <div class="addto-wrap">
+                                    <a class='add-wishlist' href='{% url "shop:add_to_wishlist" product.id %}' title='Add to wishlist'>
+                                      <i class="icon-heart icon"></i>
+                                    </a>
+                                    <a class='add-compare' href='{% url "shop:compare" %}' title='Add to compare'>
+                                      <i class="icon-shuffle icon"></i>
+                                    </a>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="product-desc">
+                                <div class="product-info">
+                                  <h4 class="title"><a href='{{product.get_absolute_url}}'>{{product.name}}</a></h4>
+                                  <div class="prices">
+                                    <span class="price">Ksh.{{product.price}}</span>
+                                  </div>
+                                </div>
+                                <div class="product-footer">
+                                  <a class='btn-product-add' href="{% url 'shop:product_detail' product.id %}">Add to cart</a>
+                                  <a class="btn-quick-view" href="javascript:;" title="Quick view">Quick view</a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <!--== End Shop Item ==-->
+                        </div>
+                        {% endfor %}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-pane fade" id="health-care" role="tabpanel" aria-labelledby="health-care-tab">
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="product-slider owl-carousel owl-theme">
+                        {% for product in products %}
+                        <div class="item">
+                          <!--== Start Shop Item ==-->
+                          <div class="product-item">
+                            <div class="inner-content">
+                              <div class="product-thumb">
+                                <a href='{{product.get_absolute_url}}'>
+                                  <img src="{{product.image.url}}" alt="{{product.name}}">
+                                </a>
+                                <div class="product-action">
+                                  <div class="addto-wrap">
+                                    <a class='add-wishlist' href='{% url "shop:add_to_wishlist" product.id %}' title='Add to wishlist'>
+                                      <i class="icon-heart icon"></i>
+                                    </a>
+                                    <a class='add-compare' href='{% url "shop:compare" %}' title='Add to compare'>
+                                      <i class="icon-shuffle icon"></i>
+                                    </a>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="product-desc">
+                                <div class="product-info">
+                                  <h4 class="title"><a href='{{product.get_absolute_url}}'>{{product.name}}</a></h4>
+                                  <div class="prices">
+                                    <span class="price">{{product.price}}</span>
+                                  </div>
+                                </div>
+                                <div class="product-footer">
+                                  <a class='btn-product-add' href="{% url 'cart:add_to_cart' product.id %}">Add to cart</a>
+                                  <a class="btn-quick-view" href="javascript:;" title="Quick view">Quick view</a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <!--== End Shop Item ==-->
+                        </div>
+                        {% endfor %}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--== End Product Area Wrapper ==-->
