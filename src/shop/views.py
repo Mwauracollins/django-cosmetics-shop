@@ -35,7 +35,7 @@ def products_list(request):
     return HttpResponse("Product List PASGE")
 
 
-@login_required(login_url='accounts:login_page')
+# @login_required(login_url='accounts:login_page')
 def product_detail(request, slug):
     product = get_object_or_404(Product, slug=slug)
     if request.method == 'POST':
@@ -47,11 +47,11 @@ def product_detail(request, slug):
     related_products = Product.objects.filter(category=product.category).all()[:5]
     context = {
         'product': product,
-        'wishlist': 'wishlist',
+        # 'wishlist': 'wishlist',
         'related_products': related_products
     }
-    if request.user.wishlist.filter(id=product.id).first():
-        context['wishlist'] = 'remove'
+    # if request.user.wishlist.filter(id=product.id).first():
+    #     context['wishlist'] = 'remove'
 
     return render(request, 'shop/product_detail.html', context)
 

@@ -4,13 +4,32 @@ from accounts.models import Profile
 
 
 class Order(models.Model):
+    ORDER_STATUS = [
+        ('Pending', 'Pending'),
+        ('Delivered', 'Delivered'),
+        ('Shipping', 'Shipping')
+    ]
     owner = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='orders')
-    ref_code = models.CharField(max_length=100)
+    total_price = models.DecimalField(max_digits=10, decimal_places=2, null=True)
+    tracking_number = models.CharField(max_length=100)
     is_ordered = models.BooleanField(default=False)
     date_ordered = models.DateTimeField(auto_now=True)
+    first_name = models.CharField(max_length=250, null=True)
+    last_name = models.CharField(max_length=250, null=True)
+    email = models.EmailField(max_length=2048, null=True)
+    phone_number = models.CharField(max_length=10, null=True)
+    address = models.CharField(max_length=250, null=True)
+    region = models.CharField(max_length=250, null=True)
+    town = models.CharField(max_length=250, null=True)
+
+    payment_method = models.CharField(max_length=250, null=True)
+    payment_id = models.CharField(max_length=150, null=True)
+    order_status = models.CharField(choices=ORDER_STATUS, max_length=150, null=True,default="Pending")
+    created_at = models.DateTimeField(auto_now_add=True, null=True)
+    updated_at = models.DateTimeField(auto_now=True, null=True)
 
     def __str__(self):
-        return f"{self.owner} {self.ref_code}"
+        return f"{self.owner} {self.tracking_number}"
 
     def get_order_items(self):
         return self.items.all()
@@ -26,8 +45,8 @@ class Order(models.Model):
 
 
 class OrderItem(models.Model):
-    order = models.ForeignKey(Order, on_delete=models.CASCADE, null=True, related_name='items')
-    product = models.OneToOneField(Product, on_delete=models.SET_NULL, null=True, related_name='order_items')
+    order = models.ForeignKey(Order, on_delete=models.SET_NULL, null=True, related_name='items')
+    product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
     price = models.DecimalField(max_digits=10, decimal_places=2, null=True)
     order_item_quantity = models.PositiveIntegerField(default=1, null=True )
     is_ordered = models.BooleanField(default=False)
@@ -35,7 +54,7 @@ class OrderItem(models.Model):
     date_ordered = models.DateTimeField(null=True)
 
     def __str__(self):
-        return self.product.name
+        return self.order.id
 
     def get_cost(self):
         return self.product.price * self.order_item_quantity

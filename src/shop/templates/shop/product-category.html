@@ -1,3 +1,4 @@
+    {% load static %}
     <!--== Start Product Category Area Wrapper ==-->
     <section class="product-area product-category-area">
       <div class="container">
@@ -18,11 +19,11 @@
                 <div class="product-category-item">
                   <div class="inner-content">
                     <div class="thumb">
-                      <img src="assets/img/shop/category/01.jpg" alt="Image-HasTech" class="img">
+                      <img src="{% static 'shop/img/makeup.jpeg' %}" alt="Image-HasTech" class="img">
                     </div>
                     <div class="content">
                       <p class="product-number">13 products</p>
-                      <h4 class="title"><a href='/argima/argima/shop'>Makeup</a></h4>
+                      <h4 class="title"><a href='{% url "shop:product_list" %}'>Makeup</a></h4>
                     </div>
                   </div>
                 </div>
@@ -31,11 +32,11 @@
                 <div class="product-category-item">
                   <div class="inner-content">
                     <div class="thumb">
-                      <img src="assets/img/shop/category/02.jpg" alt="Image-HasTech" class="img">
+                      <img src="{% static 'shop/img/skincare.jpeg' %}" alt="Image-HasTech" class="img">
                     </div>
                     <div class="content">
                       <p class="product-number">13 products</p>
-                      <h4 class="title"><a href='/argima/argima/shop'>Skin Care</a></h4>
+                      <h4 class="title"><a href='{% url "shop:product_list" %}'>Skin Care</a></h4>
                     </div>
                   </div>
                 </div>
@@ -48,7 +49,7 @@
                     </div>
                     <div class="content">
                       <p class="product-number">13 products</p>
-                      <h4 class="title"><a href='/argima/argima/shop'>Health Care</a></h4>
+                      <h4 class="title"><a href='{% url "shop:product_list" %}'>Health Care</a></h4>
                     </div>
                   </div>
                 </div>
@@ -61,7 +62,7 @@
                     </div>
                     <div class="content">
                       <p class="product-number">13 products</p>
-                      <h4 class="title"><a href='/argima/argima/shop'>Makeup Tools</a></h4>
+                      <h4 class="title"><a href='{% url "shop:product_list" %}'>Makeup Tools</a></h4>
                     </div>
                   </div>
                 </div>
@@ -74,7 +75,7 @@
                     </div>
                     <div class="content">
                       <p class="product-number">13 products</p>
-                      <h4 class="title"><a href='/argima/argima/shop'>Skin Care Tools</a></h4>
+                      <h4 class="title"><a href='{% url "shop:product_list" %}'>Skin Care Tools</a></h4>
                     </div>
                   </div>
                 </div>
@@ -87,7 +88,7 @@
                     </div>
                     <div class="content">
                       <p class="product-number">13 products</p>
-                      <h4 class="title"><a href='/argima/argima/shop'>Nail Art & Tools</a></h4>
+                      <h4 class="title"><a href='{% url "shop:product_list" %}'>Nail Art & Tools</a></h4>
                     </div>
                   </div>
                 </div>

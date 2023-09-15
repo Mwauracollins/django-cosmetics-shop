@@ -1,10 +1,23 @@
 from cart.cart import CartObject
+from cart.models import Cart
 
 
 def cart(request):
-    return {
-        'cart': CartObject(request)
-    }
+    user= request.user
+    if user.is_authenticated:
+        cart = Cart.objects.get(owner=user)
+        return {
+            'cart': cart.get_cart_items(),
+            'get_total_distinct_items': cart.get_total_dictinct_items(),
+            'get_total_price': cart.get_total_price(),
+        }
+    else:
+        cart = CartObject(request)
+        return {
+            'cart': cart,
+            'get_total_distinct_items': cart.get_total_distinct_items(),
+            'get_total_price': cart.get_total_price()
+            }
 
 
 def user_info(request):

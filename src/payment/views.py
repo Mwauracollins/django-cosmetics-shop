@@ -7,11 +7,10 @@ from orders.models import Order
 
 def checkout(request):
     user = request.user
-    order = Order.objects.create(user=user)
+    order = Order.objects.create(owner=user)
     cart = CartObject(request).cart
 
-    for product_id, item_data in cart:
-        return None
+
     return render(request, "payment/checkout.html")
 
 
