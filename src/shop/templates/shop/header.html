@@ -91,7 +91,7 @@
                             <li><a href='{% url "payment:checkout" %}'>Checkout</a></li>
                             <li><a href='{% url "shop:wishlist" %}'>Wishlist</a></li>
                             <li><a href='{% url "shop:compare" %}'>Compare</a></li>
-                            <li><a href=''>My Account</a></li>
+                            <li><a href='{% url "accounts:profile_details" %}'>My Account</a></li>
                             <li><a href='{% url "accounts:login_page" %}'>Login</a></li>
                             <li><a href='{% url "accounts:signup_page" %}'>Register</a></li>
                           </ul>
@@ -183,12 +183,12 @@
                         <sup class="shop-count">2</sup>
                       </a>
                     </div>
-                    {% for item in cart %}
+
                     <div class="shop-button-item">
                       <a class="shop-button" href="#">
                         <i class="icon-bag icon"></i>
-                        <sup class="shop-count">{{ cart.get_total_distinct_items}}</sup>
-                        <span class="cart-total">Ksh. {{cart.get_total_price}}</span>
+                        <sup class="shop-count">{{ get_total_distinct_items}}</sup>
+                        <span class="cart-total">Ksh. {{get_total_price}}</span>
                       </a>
                       <div class="popup-cart-content">
                         <ul class="popup-product-list">
@@ -196,10 +196,10 @@
                           <li class="product-list-item">
                             <a href="product-single.html">
                               <img src="{{item.product.image.url}}" alt="{{item.name}}">
-                              <span class="product-title">{{item.name}}</span>
-                              <span class="product-quantity">{{item.quantity}}</span>
+                              <span class="product-title">{{item.product.name}}</span>
+                              <span class="product-quantity">{{item.product.quantity}}</span>
                             </a>
-                            <span class="product-price">Ksh {{item.price}}</span>
+                            <span class="product-price">Ksh. {{item.product.price}}</span>
                             <a class="product-close" href="#"><i class="la la-close"></i></a>
                           </li>
                           {% endfor %}
@@ -208,7 +208,7 @@
                           <div class="cart-subtotals">
                             <div class="products">
                               <span class="label">Subtotal</span>
-                              <span class="value">€{{cart.get_total_price}}</span>
+                              <span class="value">Ksh. {{get_total_price}}</span>
                             </div>
                             <div class="products">
                               <span class="label">Shipping</span>
@@ -217,7 +217,7 @@
                           </div>
                           <div class="cart-total">
                             <span class="label">Total</span>
-                            <span class="value">€{{cart.get_total_price}}</span>
+                            <span class="value">Ksh. {{get_total_price}}</span>
                           </div>
                         </div>
                         <div class="checkout">
@@ -225,7 +225,7 @@
                         </div>
                       </div>
                     </div>
-                    {% endfor %}
+                    
                   </div>
                 </div>
               </div>
@@ -257,7 +257,10 @@
           <div class="col-4">
             <div class="header-item justify-content-end">
               <button class="btn-user" onclick="window.location.href='{% url 'accounts:profile_details' %}'"><i class="icon-user"></i></button>
-              <button class="btn-cart" onclick="window.location.href='{% url 'cart:view_cart' %}'"><i class="icon-bag"></i> <span class="item-count">{{cart.get_total_distinct_items }}</span></button>
+              <button class="btn-cart" onclick="window.location.href='{% url 'cart:view_cart' %}'"><i class="icon-bag"></i> <span class="item-count">
+
+                {{ get_total_distinct_items }}
+              </span></button>
             </div>
           </div>
           <div class="col-12">

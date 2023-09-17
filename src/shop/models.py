@@ -55,3 +55,19 @@ class Product(models.Model):
         db_table = 'Product'
         verbose_name = 'Product'
         verbose_name_plural = 'Products'
+
+
+class Wishlist(models.Model):
+    from shop.models import Product
+    from accounts.models import Profile
+    user = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True)
+    product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.user
+
+    class Meta:
+        db_table = 'Wishlist'
+        verbose_name = 'Wishlist'
+        verbose_name_plural = 'Wishlists'

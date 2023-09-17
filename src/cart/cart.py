@@ -73,3 +73,20 @@ class CartObject:
     def clear(self):
         del self.session[settings.CART_SESSION_ID]
         self.save()
+
+    def cart_serializable(self):
+        representation = []
+        products = Product.objects.filter(id__in=self.cart.keys())
+
+        for product_id, item_data in self.cart.items():
+            product = products.get(id=product_id)
+            item_dict = {
+                'product_id': product.id,
+                'product_name': product.name,
+                'price': str(product.price),
+                'quantity': item_data['quantity'],
+                'total_price': str(Decimal(item_data['price']) * item_data['quantity']),
+            }
+            representation.append(item_dict)
+
+        return representation

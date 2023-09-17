@@ -6,9 +6,10 @@ from shop.models import Product
 
 class Profile(AbstractUser):
     username = models.CharField(unique=True, null=True, max_length=200)
+    first_name = models.CharField(max_length=250, null=True)
+    last_name = models.CharField(max_length=250, null=True)
     email = models.EmailField(max_length=200, null=True)
     phone_number = models.CharField(max_length=10, unique=True)
-    wishlist = models.ManyToManyField(Product, blank=True, related_name='wishlist')
 
     def __str__(self):
         return self.email
