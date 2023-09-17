@@ -12,7 +12,7 @@
           <div class="col-lg-8">
             <div class="shopping-checkout-content">
               <div class="checkout-accordion" id="accordionExample">
-                <form action="{% url 'orders:create_order' %}" method="post">
+                <form action="{% url 'orders:create_order'%}" method="POST">
                   {% csrf_token %}
                 <div class="checkout-accordion-item">
                   <h2 class="heading" id="headingOne">
@@ -28,16 +28,16 @@
                     <div class="checkout-accordion-body">
                       <div class="personal-information">
                           <div class="form-group row">
-                            <label class="col-md-3" for="f_name">First name</label>
+                            <label class="col-md-3" for="first_name">First name</label>
                             <div class="col-md-6">
-                              <input name="first_name" id="f_name" class="form-control" type="text" />
+                              <input name="first_name" id="first_name" class="form-control" type="text" />
                             </div>
                           </div>
 
                           <div class="form-group row">
-                            <label class="col-md-3" for="l_name">Last name</label>
+                            <label class="col-md-3" for="last_name">Last name</label>
                             <div class="col-md-6">
-                              <input name="last_name" id="l_name" class="form-control" type="text" />
+                              <input name="last_name" id="last_name" class="form-control" type="text" />
                             </div>
                           </div>
 

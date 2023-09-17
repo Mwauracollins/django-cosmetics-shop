@@ -29,9 +29,10 @@
                             </tr>
                           </thead>
                           <tbody>
+                          {% for item in wishlist %}
                             <tr>
                               <td class="item-name">
-                                <span><a href="#/">My wishlist</a></span>
+                                <span><a href="#/">{{item.product.name}}</a></span>
                               </td>
                               <td class="item-qty">
                                 <span>1</span>
@@ -40,41 +41,20 @@
                                 <span>0</span>
                               </td>
                               <td class="item-created">
-                                <span>2021-01-27</span>
+                                <span>{{item.created_at}}</span>
                               </td>
                               <td class="item-direct-link">
-                                <span><a href="#/">View</a></span>
+                                <span><a href="{{item.product.get_absolute_url}}">View</a></span>
                               </td>
                               <td class="item-default">
                                 <span><i class="fa fa-check-square"></i></span>
                               </td>
                               <td class="item-delete">
-                                <span><a href="#/"><i class="fa fa-trash"></i></a></span>
+                                <span><a href="{% url 'shop:remove_from_wishlist' item.product.id %}"><i class="fa fa-trash"></i></a></span>
                               </td>
                             </tr>
-                            <tr>
-                              <td class="item-name">
-                                <span><a href="#/">My wishlist</a></span>
-                              </td>
-                              <td class="item-qty">
-                                <span>1</span>
-                              </td>
-                              <td class="item-viewed">
-                                <span>0</span>
-                              </td>
-                              <td class="item-created">
-                                <span>2021-01-27</span>
-                              </td>
-                              <td class="item-direct-link">
-                                <span><a href="#/">View</a></span>
-                              </td>
-                              <td class="item-default">
-                                <span><i class="fa fa-check-square"></i></span>
-                              </td>
-                              <td class="item-delete">
-                                <span><a href="#/"><i class="fa fa-trash"></i></a></span>
-                              </td>
-                            </tr>
+                          {% endfor %}
+
                           </tbody>
                         </table>
                       </div>

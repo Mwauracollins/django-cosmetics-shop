@@ -50,9 +50,9 @@ def delete_cart_items(request, product_id):
     user = request.user
 
     if user.is_authenticated:
-       cart = Cart.objects.get(owner=user)
-       cart_item = CartItem.objects.filter(cart=cart, id=product_id)
-       cart_item.delete()
+        cart = Cart.objects.get(owner=user)
+        cart_item = CartItem.objects.filter(cart=cart)
+        cart_item.delete()
     else:
         cart = CartObject(request)
         product = get_object_or_404(Product, id=product_id)

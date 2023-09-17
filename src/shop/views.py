@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render, redirect
 
 from cart.cart import CartObject
-from shop.models import Category, Product
+from shop.models import Category, Product, Wishlist
 
 
 def paginat(request, list_objects):
@@ -32,7 +32,7 @@ def homepage_view(request):
 
 
 def products_list(request):
-    return HttpResponse("Product List PASGE")
+    return render(request, 'shop/product_list.html')
 
 
 # @login_required(login_url='accounts:login_page')
@@ -62,7 +62,6 @@ def filter_by_category(request, slug):
 
     [
         result.append(product) \
- \
         for product in Product.objects.filter(category=category.id).all()
     ]
 
@@ -74,8 +73,9 @@ def filter_by_category(request, slug):
 
 @login_required(login_url='accounts:login_page')
 def add_to_wishlist(request, product_id):
+    user = request.user
     product = get_object_or_404(Product, id=product_id)
-    request.user.wishlist.add(product)
+    wishlist = Wishlist.objects.get_or_create(user=user, product=product)
 
     return redirect('shop:wishlist',
                     # slug=product.slug
@@ -84,18 +84,19 @@ def add_to_wishlist(request, product_id):
 
 @login_required(login_url='accounts:login_page')
 def remove_from_wishlist(request, product_id):
+    user = request.user
     product = get_object_or_404(Product, id=product_id)
-    request.user.wishlist.remove(product)
+    wishlist = Wishlist.objects.filter(user=user, product=product)
+    wishlist.delete()
 
     return redirect('shop:wishlist')
 
 
 @login_required(login_url='accounts:login_page')
 def wishlist(request):
-    products = request.user.wishlist.all()
+    wishlist = Wishlist.objects.filter(user=request.user)
     context = {
-        'title': 'Wishlist',
-        'products': products
+        'wishlist': wishlist
     }
     return render(request, 'shop/wishlist.html', context)
 
@@ -119,4 +120,4 @@ def contact(request):
 
 
 def compare(request):
-    return HttpResponse("compare")
+    return render(request, 'shop/compare.html')
