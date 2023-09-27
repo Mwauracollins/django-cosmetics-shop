@@ -16,233 +16,81 @@ Compare
             <div class="poscompare-table-container">
               <div class="poscompare-product-tr mb-30">
                 <div class="poscompare-product-td">
-                  <a href="#/" class="poscompare-remove-all">Remove all products</a>
+                  <a href="{% url 'shop:clear_compare' %}" class="poscompare-remove-all">Remove all products</a>
                 </div>
+                {% for item in compare %}
                 <div class="poscompare-product-td">
                   <div class="poscompare-product">
                     <div class="product-thumb">
-                      <a href='/argima/argima/single-product'>
-                        <img src="assets/img/shop/02.jpg" alt="Image-HasTech">
+                      <a href='{{item.product.get_absolute_url}}'>
+                        <img src="{{item.product.image.url}}" alt="{{item.product.name}}">
                       </a>
-                      <a href="#/" class="poscompare-remove">Remove</a>
+                      <a href="{% url 'shop:remove_from_compare' item.product.id %}" class="poscompare-remove">Remove</a>
                     </div>
                     <div class="product-info">
-                      <h4 class="title"><a href='/argima/argima/single-product'>Juicy Couture Juicy Quilted Te...</a></h4>
-                      <div class="star-content">
-                        <i class="ion-md-star"></i>
-                        <i class="ion-md-star"></i>
-                        <i class="ion-md-star"></i>
-                        <i class="ion-md-star"></i>
-                        <i class="ion-md-star"></i>
-                      </div>
+                      <h4 class="title"><a href='{{item.product.get_absolute_url}}'>{{item.product.name}}</a></h4>
                       <div class="prices">
-                        <span class="price-old visually-hidden">€29.16</span>
-                        <span class="price text-black">€43.80</span>
+                        <span class="price-old visually-hidden">€{{item.product.price}}</span>
+                        <span class="price text-black">€{{item.product.price}}</span>
                       </div>
-                      <a class='btn-product-add' href='/argima/argima/single-product'>Add to cart</a>
+                      <a class='btn-product-add' href='{% url 'cart:add_to_cart' item.product.id %}'>Add to cart</a>
                     </div>
                   </div>
                 </div>
-                <div class="poscompare-product-td">
-                  <div class="poscompare-product">
-                    <div class="product-thumb">
-                      <a href='/argima/argima/single-product'>
-                        <img src="assets/img/shop/09.jpg" alt="Image-HasTech">
-                      </a>
-                      <a href="#/" class="poscompare-remove">Remove</a>
-                    </div>
-                    <div class="product-info">
-                      <h4 class="title"><a href='/argima/argima/single-product'>Brixton Patrol All Terrain Anora...</a></h4>
-                      <div class="star-content">
-                        <i class="ion-md-star"></i>
-                        <i class="ion-md-star"></i>
-                        <i class="ion-md-star"></i>
-                        <i class="ion-md-star"></i>
-                        <i class="ion-md-star"></i>
-                      </div>
-                      <div class="prices">
-                        <span class="price-old visually-hidden">€29.16</span>
-                        <span class="price text-black">€35.38</span>
-                      </div>
-                      <a class='btn-product-add' href='/argima/argima/single-product'>Add to cart</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="poscompare-product-td">
-                  <div class="poscompare-product">
-                    <div class="product-thumb">
-                      <a href='/argima/argima/single-product'>
-                        <img src="assets/img/shop/11.jpg" alt="Image-HasTech">
-                      </a>
-                      <a href="#/" class="poscompare-remove">Remove</a>
-                    </div>
-                    <div class="product-info">
-                      <h4 class="title"><a href='/argima/argima/single-product'>Calvin Klein Jeans Reflective L...</a></h4>
-                      <div class="star-content">
-                        <i class="ion-md-star"></i>
-                        <i class="ion-md-star"></i>
-                        <i class="ion-md-star"></i>
-                        <i class="ion-md-star"></i>
-                        <i class="ion-md-star"></i>
-                      </div>
-                      <div class="prices">
-                        <span class="price-old visually-hidden">€29.16</span>
-                        <span class="price text-black">€35.38</span>
-                      </div>
-                      <a class='btn-product-add' href='/argima/argima/single-product'>Add to cart</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="poscompare-product-td">
-                  <div class="poscompare-product">
-                    <div class="product-thumb">
-                      <a href='/argima/argima/single-product'>
-                        <img src="assets/img/shop/06.jpg" alt="Image-HasTech">
-                      </a>
-                      <a href="#/" class="poscompare-remove">Remove</a>
-                    </div>
-                    <div class="product-info">
-                      <h4 class="title"><a href='/argima/argima/single-product'>New Balance Fresh Foam Kay...</a></h4>
-                      <div class="star-content">
-                        <i class="ion-md-star"></i>
-                        <i class="ion-md-star"></i>
-                        <i class="ion-md-star"></i>
-                        <i class="ion-md-star"></i>
-                        <i class="ion-md-star"></i>
-                      </div>
-                      <div class="prices">
-                        <span class="price-old visually-hidden">€29.16</span>
-                        <span class="price text-black">€23.06</span>
-                      </div>
-                      <a class='btn-product-add' href='/argima/argima/single-product'>Add to cart</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="poscompare-product-td">
-                  <div class="poscompare-product">
-                    <div class="product-thumb">
-                      <a href='/argima/argima/single-product'>
-                        <img src="assets/img/shop/13.jpg" alt="Image-HasTech">
-                      </a>
-                      <a href="#/" class="poscompare-remove">Remove</a>
-                    </div>
-                    <div class="product-info">
-                      <h4 class="title"><a href='/argima/argima/single-product'>Fila Locker Room Varsity Jacket</a></h4>
-                      <div class="star-content">
-                        <i class="ion-md-star"></i>
-                        <i class="ion-md-star"></i>
-                        <i class="ion-md-star"></i>
-                        <i class="ion-md-star"></i>
-                        <i class="ion-md-star icon-color-gray"></i>
-                      </div>
-                      <div class="prices">
-                        <span class="price-old visually-hidden">€29.16</span>
-                        <span class="price text-black">€10.98</span>
-                      </div>
-                      <a class='btn-product-add' href='/argima/argima/single-product'>Add to cart</a>
-                    </div>
-                  </div>
-                </div>
+                {% endfor %}
               </div>
+              
               <div class="poscompare-product-tr poscompare-data-list list-bg-color">
+                
                 <div class="poscompare-product-td">
-                  <span class="title">Compositions</span>
+                  <span class="title">Category</span>
                 </div>
+                {% for item in compare %}
                 <div class="poscompare-product-td">
-                  <span class="span">Compositions</span>
+                  <span class="span">{{item.product.category.name}}</span>
                 </div>
-                <div class="poscompare-product-td">
-                  <span class="span">Elastane</span>
-                </div>
-                <div class="poscompare-product-td">
-                  <span class="span">Cotton</span>
-                </div>
-                <div class="poscompare-product-td">
-                  <span class="span">Wool</span>
-                </div>
-                <div class="poscompare-product-td">
-                  <span class="span">Wool</span>
-                </div>
+                {% endfor %}
               </div>
+              
               <div class="poscompare-product-tr poscompare-data-list">
                 <div class="poscompare-product-td">
                   <span class="title">Paper Type</span>
                 </div>
+                {% for item in compare %}
                 <div class="poscompare-product-td">
-                  <span class="span">Plain</span>
+                  <span class="span">{{item.product.category.name}}</span>
                 </div>
-                <div class="poscompare-product-td">
-                  <span class="span">Ruled</span>
-                </div>
-                <div class="poscompare-product-td">
-                  <span class="span">Doted</span>
-                </div>
-                <div class="poscompare-product-td">
-                  <span class="span">Doted</span>
-                </div>
-                <div class="poscompare-product-td">
-                  <span class="span">Squarred</span>
-                </div>
+                {% endfor %}
               </div>
               <div class="poscompare-product-tr poscompare-data-list list-bg-color">
                 <div class="poscompare-product-td">
                   <span class="title">Color</span>
                 </div>
+                {% for item in compare %}
                 <div class="poscompare-product-td">
-                  <span class="span">White</span>
+                  <span class="span">{{item.product.category.name}}</span>
                 </div>
-                <div class="poscompare-product-td">
-                  <span class="span">Black</span>
-                </div>
-                <div class="poscompare-product-td">
-                  <span class="span">Black</span>
-                </div>
-                <div class="poscompare-product-td">
-                  <span class="span">Black</span>
-                </div>
-                <div class="poscompare-product-td">
-                  <span class="span">White</span>
-                </div>
+                {% endfor %}
               </div>
               <div class="poscompare-product-tr poscompare-data-list">
                 <div class="poscompare-product-td">
                   <span class="title">Size</span>
                 </div>
+                {% for item in compare %}
                 <div class="poscompare-product-td">
-                  <span class="span">M</span>
+                  <span class="span">{{item.product.category.name}}</span>
                 </div>
-                <div class="poscompare-product-td">
-                  <span class="span">S</span>
-                </div>
-                <div class="poscompare-product-td">
-                  <span class="span">M</span>
-                </div>
-                <div class="poscompare-product-td">
-                  <span class="span">M</span>
-                </div>
-                <div class="poscompare-product-td">
-                  <span class="span">XL</span>
-                </div>
+                {% endfor %}
               </div>
               <div class="poscompare-product-tr poscompare-data-list list-bg-color">
                 <div class="poscompare-product-td">
                   <span class="title">Frame Size</span>
                 </div>
+                {% for item in compare %}
                 <div class="poscompare-product-td">
                   <span class="span">60x90cm</span>
                 </div>
-                <div class="poscompare-product-td">
-                  <span class="span">80x120cm</span>
-                </div>
-                <div class="poscompare-product-td">
-                  <span class="span">60x90cm</span>
-                </div>
-                <div class="poscompare-product-td">
-                  <span class="span">80x120cm</span>
-                </div>
-                <div class="poscompare-product-td">
-                  <span class="span">80x120cm</span>
-                </div>
+                {% endfor %}
               </div>
             </div>
           </div>

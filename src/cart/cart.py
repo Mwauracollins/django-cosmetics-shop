@@ -28,23 +28,19 @@ class CartObject:
             cart = self.session[settings.CART_SESSION_ID] = {}
         return cart
 
-    def get_or_create_cart(self, request):
-        if request.user.is_authenticated:
-            cart, created = Cart.objects.get_or_create(owner=request.user)
-            return cart
-        return None
-
     def add(self, product, quantity):
         product_id = str(product.id)
 
         if product_id not in self.cart:
             self.cart[product_id] = {
-                'quantity': 0,
+                'quantity': 1,
                 'price': str(product.price)
             }
             self.cart[product_id]['quantity'] = quantity
-
-        self.cart.get(product_id)['quantity'] = quantity
+        # if update_quantity:
+        self.cart[product_id]['quantity'] = quantity
+        # else: 
+        #     self.cart[product_id]['quantity'] += quantity
         self.save()
 
     def remove(self, product):

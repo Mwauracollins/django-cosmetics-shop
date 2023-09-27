@@ -783,7 +783,7 @@ section .container-fluid {
   }
 }
 .owl-carousel .owl-nav .owl-prev:before {
-  content: "";
+  content: "<";
 }
 .owl-carousel .owl-nav .owl-next {
   right: -25px;
@@ -794,7 +794,7 @@ section .container-fluid {
   }
 }
 .owl-carousel .owl-nav .owl-next:before {
-  content: "";
+  content: ">";
 }
 .owl-carousel:hover .owl-nav > [class*=owl-] {
   opacity: 1;

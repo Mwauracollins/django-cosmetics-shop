@@ -3,7 +3,6 @@ from shop import views
 
 app_name = 'shop'
 
-
 urlpatterns = [
     path('', views.index, name='initial_page'),
     path('<slug:slug>', views.product_detail, name='product_detail'),
@@ -17,4 +16,7 @@ urlpatterns = [
     path('about/', views.about, name="about"),
     path('compare/', views.compare, name="compare"),
     path('contact/', views.contact, name="contact"),
+    path('add-to-compare/<int:product_id>/', views.add_to_compare, name="add_to_compare"),
+    path('remove_from_compare/<int:product_id>/', views.remove_from_compare, name="remove_from_compare"),
+    path('clear_compare/', views.clear_compare, name="clear_compare")
 ]

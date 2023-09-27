@@ -13,6 +13,7 @@ def add_to_cart(request, product_id):
     user = request.user
     product = get_object_or_404(Product, id=product_id)
     quantity = int(request.POST.get('quantity', 1))
+    # update_quatity = int(request.POST.get('update_quantity'))
     if request.method == "POST":
         if user.is_authenticated:
             cart, created = Cart.objects.get_or_create(owner=user)
@@ -22,6 +23,7 @@ def add_to_cart(request, product_id):
                 product=product,
             )
             cart_item.quantity = quantity
+            # cart_item.quantity = update_quatity
             cart_item.save()
             cart.save()
         else:
