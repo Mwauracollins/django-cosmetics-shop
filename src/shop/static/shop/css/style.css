@@ -783,7 +783,10 @@ section .container-fluid {
   }
 }
 .owl-carousel .owl-nav .owl-prev:before {
-  content: "";
+  content: "\f105";
+  font-family: 'Font Awesome'; /* Specify the Font Awesome font family */
+  font-weight: normal;
+
 }
 .owl-carousel .owl-nav .owl-next {
   right: -25px;
@@ -794,7 +797,9 @@ section .container-fluid {
   }
 }
 .owl-carousel .owl-nav .owl-next:before {
-  content: "";
+  content: "\f104";
+  font-family: 'Font Awesome'; /* Specify the Font Awesome font family */
+  font-weight: normal;
 }
 .owl-carousel:hover .owl-nav > [class*=owl-] {
   opacity: 1;
@@ -4126,7 +4131,7 @@ section .container-fluid {
   font-family: "simple-line-icons";
   font-weight: 400;
   display: block;
-  content: "";
+  content: "\e04f";
   height: 40px;
   line-height: 40px;
   right: 5px;

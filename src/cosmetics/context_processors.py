@@ -1,9 +1,11 @@
 from cart.cart import CartObject
 from cart.models import Cart
+from shop.compare import Comparison
+from shop.models import Wishlist
 
 
 def cart(request):
-    user= request.user
+    user = request.user
     if user.is_authenticated:
         cart = Cart.objects.get(owner=user)
         return {
@@ -17,7 +19,7 @@ def cart(request):
             'cart': cart,
             'get_total_distinct_items': cart.get_total_distinct_items(),
             'get_total_price': cart.get_total_price()
-            }
+        }
 
 
 def user_info(request):
@@ -28,4 +30,19 @@ def user_info(request):
         user = None
     return {
         'user': user
+    }
+
+def wishlist(request):
+    wishlist = Wishlist.objects.filter(user=request.user)
+
+    return {
+        'wishlist': wishlist
+    }
+    
+
+def comparison(request):
+    compare = Comparison(request)
+    return {
+        'compare' : compare
+
     }

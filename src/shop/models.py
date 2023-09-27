@@ -50,7 +50,6 @@ class Product(models.Model):
     def get_absolute_url(self):
         return reverse("shop:product_detail", kwargs={"slug": self.slug})
 
-
     class Meta:
         db_table = 'Product'
         verbose_name = 'Product'
@@ -58,8 +57,8 @@ class Product(models.Model):
 
 
 class Wishlist(models.Model):
-    from shop.models import Product
     from accounts.models import Profile
+
     user = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True)
     product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
     created_at = models.DateTimeField(auto_now_add=True)

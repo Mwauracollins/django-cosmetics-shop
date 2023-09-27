@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'cart.apps.CartConfig',
     'payment.apps.PaymentConfig',
+    'blog.apps.BlogConfig',
     
     # Packages config
     'django_daraja',
@@ -76,6 +77,8 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'cosmetics.context_processors.cart',
                 'cosmetics.context_processors.user_info',
+                'cosmetics.context_processors.comparison',
+                'cosmetics.context_processors.wishlist'
             ],
         },
     },
@@ -149,6 +152,7 @@ AUTH_USER_MODEL = 'accounts.Profile'
 
 CART_SESSION_ID = 'cart'
 SESSION_COOKIE_NAME = 'cart'
+COMPARISON_SESSION_ID = 'compare'
 
 
 # # Stripe Account Settings
@@ -174,17 +178,17 @@ MPESA_PASSKEY = os.environ.get("MPESA_PASSKEY")
 MPESA_INITIATOR_USERNAME = os.environ.get("MPESA_INITIATOR_USERNAME")
 MPESA_INITIATOR_SECURITY_CREDENTIAL = os.environ.get("MPESA_INITIATOR_SECURITY_CREDENTIAL")
 
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'console': {
-            'level': 'DEBUG',
-            'class': 'logging.StreamHandler',
-        },
-    },
-    'root': {
-        'handlers': ['console'],
-        'level': 'DEBUG',
-    },
-}
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'handlers': {
+#         'console': {
+#             'level': 'DEBUG',
+#             'class': 'logging.StreamHandler',
+#         },
+#     },
+#     'root': {
+#         'handlers': ['console'],
+#         'level': 'DEBUG',
+#     },
+# }

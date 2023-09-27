@@ -8,10 +8,11 @@ from accounts.forms import RegistrationForm
 from accounts.models import Profile
 
 
-@login_required(login_url='login_page')
+@login_required(login_url='accounts:login_page')
 def profile_details(request):
+    user = request.user
     context = {
-        
+        'user': user
     }
     return render(request, 'accounts/profile.html', context)
 
@@ -23,7 +24,6 @@ def login_view(request):
 
         user = authenticate(request, username=email, password=password)
         if user is not None:
-            request.session.cycle_key()
             login(request, user)
             return redirect('shop:homepage')
         else:

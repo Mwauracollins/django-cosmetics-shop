@@ -117,7 +117,7 @@
                         </li>
                       </ul>
                     </li>
-                    <li><a href='/argima/argima/contact'>Contact us</a></li>
+                    <li><a href='{% url "shop:contact" %}'>Contact us</a></li>
                   </ul>
                 </div>
               </div>
@@ -174,13 +174,13 @@
                     <div class="shop-button-item">
                       <a class='shop-button' href='{% url "shop:compare" %}'>
                         <i class="icon-shuffle icon"></i>
-                        <sup class="shop-count">5</sup>
+                        <sup class="shop-count">{{compare.get_total_distinct_items}}</sup>
                       </a>
                     </div>
                     <div class="shop-button-item">
                       <a class='shop-button' href='{% url "shop:wishlist" %}'>
                         <i class="icon-heart icon"></i>
-                        <sup class="shop-count">2</sup>
+                        <sup class="shop-count">{{wishlist.count}}</sup>
                       </a>
                     </div>
 
@@ -197,7 +197,7 @@
                             <a href="product-single.html">
                               <img src="{{item.product.image.url}}" alt="{{item.name}}">
                               <span class="product-title">{{item.product.name}}</span>
-                              <span class="product-quantity">{{item.product.quantity}}</span>
+                              <span class="product-quantity">{{item.quantity}}</span>
                             </a>
                             <span class="product-price">Ksh. {{item.product.price}}</span>
                             <a class="product-close" href="#"><i class="la la-close"></i></a>

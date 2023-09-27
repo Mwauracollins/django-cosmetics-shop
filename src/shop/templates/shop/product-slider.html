@@ -29,7 +29,7 @@
                           <a class='add-wishlist' href='{% url "shop:add_to_wishlist" product.id %}' title='Add to wishlist'>
                             <i class="icon-heart icon"></i>
                           </a>
-                          <a class='add-compare' href='{% url "shop:compare" %}' title='Add to compare'>
+                          <a class='add-compare' href='{% url "shop:add_to_compare" product.id %}' title='Add to compare'>
                             <i class="icon-shuffle icon"></i>
                           </a>
                         </div>
@@ -47,9 +47,10 @@
                         </div>
                       </div>
                       <div class="product-footer">
-                        <form action="" method="post">
+                        <form action="{% url 'cart:add_to_cart' product.id %}" method="post">
                           {% csrf_token %}
-                        <a  class='btn-product-add' href='{% url "cart:add_to_cart" product.id %}'>Add to cart</a>
+                          <input type="hidden" name="quantity" value="1">
+                        <a  class='btn-product-add' ><button href='{% url "cart:add_to_cart" product.id %}' style="border: none; background-color: transparent;" type="submit">Add to cart</button></a>
                         </form>
                         <a class="btn-quick-view" href="javascript:;" title="Quick view">Quick view</a>
                       </div>
@@ -115,7 +116,7 @@
                                     <a class='add-wishlist' href='{% url "shop:add_to_wishlist" product.id %}' title='Add to wishlist'>
                                       <i class="icon-heart icon"></i>
                                     </a>
-                                    <a class='add-compare' href='/argima/argima/compare' title='Add to compare'>
+                                    <a class='add-compare' href='{% url "shop:add_to_compare" product.id %}' title='Add to compare'>
                                       <i class="icon-shuffle icon"></i>
                                     </a>
                                   </div>
@@ -129,7 +130,11 @@
                                   </div>
                                 </div>
                                 <div class="product-footer">
-                                  <a class='btn-product-add' href='{% url "cart:add_to_cart" product.id %}'>Add to cart</a>
+                                  <form action="{% url 'cart:add_to_cart' product.id %}" method="post">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="quantity" value="1">
+                                  <a  class='btn-product-add' ><button href='{% url "cart:add_to_cart" product.id %}' style="border: none; background-color: transparent;" type="submit">Add to cart</button></a>
+                                  </form>
                                   <a class="btn-quick-view" href="javascript:;" title="Quick view">Quick view</a>
                                 </div>
                               </div>
@@ -160,7 +165,7 @@
                                     <a class='add-wishlist' href='{% url "shop:add_to_wishlist" product.id %}' title='Add to wishlist'>
                                       <i class="icon-heart icon"></i>
                                     </a>
-                                    <a class='add-compare' href='{% url "shop:compare" %}' title='Add to compare'>
+                                    <a class='add-compare' href='{% url "shop:add_to_compare" product.id %}' title='Add to compare'>
                                       <i class="icon-shuffle icon"></i>
                                     </a>
                                   </div>
@@ -174,7 +179,11 @@
                                   </div>
                                 </div>
                                 <div class="product-footer">
-                                  <a class='btn-product-add' href="{% url 'shop:product_detail' product.id %}">Add to cart</a>
+                                  <form action="{% url 'cart:add_to_cart' product.id %}" method="post">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="quantity" value="1">
+                                  <a  class='btn-product-add' ><button href='{% url "cart:add_to_cart" product.id %}' style="border: none; background-color: transparent;" type="submit">Add to cart</button></a>
+                                  </form>
                                   <a class="btn-quick-view" href="javascript:;" title="Quick view">Quick view</a>
                                 </div>
                               </div>
@@ -205,7 +214,7 @@
                                     <a class='add-wishlist' href='{% url "shop:add_to_wishlist" product.id %}' title='Add to wishlist'>
                                       <i class="icon-heart icon"></i>
                                     </a>
-                                    <a class='add-compare' href='{% url "shop:compare" %}' title='Add to compare'>
+                                    <a class='add-compare' href='{% url "shop:add_to_compare" product.id %}' title='Add to compare'>
                                       <i class="icon-shuffle icon"></i>
                                     </a>
                                   </div>
@@ -219,7 +228,11 @@
                                   </div>
                                 </div>
                                 <div class="product-footer">
-                                  <a class='btn-product-add' href="{% url 'cart:add_to_cart' product.id %}">Add to cart</a>
+                                  <form action="{% url 'cart:add_to_cart' product.id %}" method="post">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="quantity" value="1">
+                                  <a  class='btn-product-add' ><button href='{% url "cart:add_to_cart" product.id %}' style="border: none; background-color: transparent;" type="submit">Add to cart</button></a>
+                                  </form>
                                   <a class="btn-quick-view" href="javascript:;" title="Quick view">Quick view</a>
                                 </div>
                               </div>

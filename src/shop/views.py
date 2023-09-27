@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render, redirect
 
 from cart.cart import CartObject
+from shop.compare import Comparison
 from shop.models import Category, Product, Wishlist
 
 
@@ -19,6 +20,7 @@ def paginat(request, list_objects):
     return page_obj
 
 
+@login_required(login_url="accounts:login_page")
 def index(request):
     products = Product.objects.all()
     context = {
@@ -26,7 +28,7 @@ def index(request):
     }
     return render(request, 'shop/main.html', context)
 
-
+@login_required(login_url="accounts:login_page")
 def homepage_view(request):
     return render(request, "shop/index.html")
 
@@ -35,7 +37,7 @@ def products_list(request):
     return render(request, 'shop/product_list.html')
 
 
-# @login_required(login_url='accounts:login_page')
+@login_required(login_url='accounts:login_page')
 def product_detail(request, slug):
     product = get_object_or_404(Product, slug=slug)
     if request.method == 'POST':
@@ -77,9 +79,7 @@ def add_to_wishlist(request, product_id):
     product = get_object_or_404(Product, id=product_id)
     wishlist = Wishlist.objects.get_or_create(user=user, product=product)
 
-    return redirect('shop:wishlist',
-                    # slug=product.slug
-                    )
+    return redirect('shop:wishlist')
 
 
 @login_required(login_url='accounts:login_page')
@@ -94,6 +94,7 @@ def remove_from_wishlist(request, product_id):
 
 @login_required(login_url='accounts:login_page')
 def wishlist(request):
+    user = request.user
     wishlist = Wishlist.objects.filter(user=request.user)
     context = {
         'wishlist': wishlist
@@ -121,3 +122,28 @@ def contact(request):
 
 def compare(request):
     return render(request, 'shop/compare.html')
+
+def add_to_compare(request, product_id):
+    product = get_object_or_404(Product, id=product_id)
+
+    comparison = Comparison(request)
+    comparison.add(product=product)
+    comparison.save()
+
+    return redirect('shop:compare')
+
+
+def remove_from_compare(request, product_id):
+    comparison = Comparison(request)
+    product = get_object_or_404(Product, id=product_id)
+
+    comparison.remove(product)
+    comparison.save()
+
+    return redirect('shop:compare')
+
+
+def clear_compare(request):
+    comparison = Comparison(request)
+    comparison.clear()
+    return redirect('shop:homepage')
